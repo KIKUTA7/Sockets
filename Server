@@ -1,0 +1,48 @@
+package com.company;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Server extends MiniJava{
+
+    public static void main(String[] args)  {
+        try {
+            ServerSocket server = new ServerSocket(7899);
+            Socket client = server.accept();
+            System.out.println("client connected");
+            InputStreamReader in = new InputStreamReader(client.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+             /*
+                     String brs = br.readLine();
+                     System.out.println(brs);
+              */
+
+
+            while (true) {
+                     /*
+                     InputStreamReader in = new InputStreamReader(client.getInputStream());
+                     BufferedReader br = new BufferedReader(in);
+                     asec sheileba oghond marto aq da file shi ar qna ravi.
+                      */
+                String brs = br.readLine();
+                System.out.println(brs);
+                String s2 = readString("Server :");
+                PrintWriter pw = new PrintWriter(client.getOutputStream());
+                pw.println(s2);
+                pw.flush();
+            }
+
+        }
+
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+}
+
+
